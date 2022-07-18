@@ -30,5 +30,6 @@ jobs:
       with:
         image: arindamgb/ab-java-project
         registry: docker.io
+        dockerfile: Dockerfile.ci
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
