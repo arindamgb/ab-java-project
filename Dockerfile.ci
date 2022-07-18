@@ -1,4 +1,4 @@
 FROM docker.io/arindamgb/openjdk11-alpine3.16
-ADD target/hello-world-0.0.1-SNAPSHOT.jar /usr/app/hello-world-0.0.1-SNAPSHOT.jar
+COPY target/hello-world-0.0.1-SNAPSHOT.jar /usr/app/hello-world-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/usr/app/hello-world-0.0.1-SNAPSHOT.jar"]
