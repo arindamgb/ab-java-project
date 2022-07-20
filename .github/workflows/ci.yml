@@ -31,14 +31,14 @@ jobs:
     - name: Save artifact
       uses: actions/upload-artifact@v3
       with:
-        name: hello-world-0.0.1-SNAPSHOT.jar
+        name: hello-world-0.0.1-SNAPSHOT.jar-$(git rev-parse --short "$GITHUB_SHA")
         path: /home/runner/work/ab-java-project/ab-java-project/target/hello-world-0.0.1-SNAPSHOT.jar
 
     - name: Build and Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: arindamgb/ab-java-project
-        tags: $(git rev-parse --short "$GITHUB_SHA")
+        #tags: $(git rev-parse --short "$GITHUB_SHA")
         registry: docker.io
         dockerfile: Dockerfile.ci
         username: ${{ secrets.DOCKER_USERNAME }}
