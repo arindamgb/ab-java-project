@@ -26,9 +26,7 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Check Jar file
-      run: | 
-      ls -la /home/runner/work/ab-java-project/ab-java-project/target/hello-world-0.0.1-SNAPSHOT.jar
-      mv /home/runner/work/ab-java-project/ab-java-project/target/hello-world-0.0.1-SNAPSHOT.jar /
+      run: ls -la /home/runner/work/ab-java-project/ab-java-project/target/hello-world-0.0.1-SNAPSHOT.jar
 
     - name: Save artifact
       uses: actions/upload-artifact@v3
