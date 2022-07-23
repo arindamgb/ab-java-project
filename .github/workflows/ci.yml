@@ -35,14 +35,18 @@ jobs:
         path: /home/runner/work/ab-java-project/ab-java-project/target/hello-world-0.0.1-SNAPSHOT.jar
 
     - name: Build and Push Docker Image
+      id: container
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: arindamgb/ab-java-project
-        #tags: $(git rev-parse --short "$GITHUB_SHA")
+        tags: $(git rev-parse --short "$GITHUB_SHA")
         registry: docker.io
         dockerfile: Dockerfile.ci
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+      
+    outputs:
+      tagpushed: ${{ steps.container.outputs.tags }}
 
   deploy:
 
@@ -58,5 +62,4 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         port: ${{ secrets.SSH_PORT }}
         script: |
-          whoami
-          ls -la
+          echo "Image tag is ${{ needs.container.outputs.tagpushed }}"
